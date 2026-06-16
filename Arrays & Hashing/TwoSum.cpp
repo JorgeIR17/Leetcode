@@ -18,3 +18,6 @@ public:
         return {};
     }
 };
+
+// Eficiencia temporal: O(n)
+// Eficiencia espacial: O(n)
