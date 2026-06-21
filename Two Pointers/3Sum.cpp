@@ -11,17 +11,19 @@ public:
         int size = nums.size();
         for(int i = 0; i < size; i++)
         {
-            if (i > 0 && nums[i] == nums[i - 1]) // Evita duplicados
+            if (i > 0 && nums[i] == nums[i - 1]) // Evitar duplicados
                 continue;
-            int j = i + 1; // Al ordenar el vector solo miramos los valores a la derecha
+            int j = i + 1; // Al ordenar el vector solo miramos a la derecha
             int k = size - 1;
             while(j < k)
             {
-                if(nums[i] + nums[j] + nums[k] < 0)
+                int sum = nums[i] + nums[j] + nums[k];
+                if(sum < 0)
                     j++;
-                if(nums[i] + nums[j] + nums[k] > 0)
+                else if(sum > 0)
                     k--;
-                if(nums[i] + nums[j] + nums[k] == 0)
+                else  //if(sum == 0)
+                {
                     res.push_back(vector<int>{nums[i], nums[j], nums[k]});
                     j++;
                     k--;
@@ -29,11 +31,13 @@ public:
                         j++;
                     while (j < k && nums[k] == nums[k + 1])
                         k--;
+                }
             }
         }
         return res;
     }
 };
+
 
 // Eficiencia temporal: O(n^2)
 // Eficiencia espacial: O(1)
